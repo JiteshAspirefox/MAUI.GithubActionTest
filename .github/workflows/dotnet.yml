@@ -28,7 +28,7 @@ jobs:
     - name: Install Maui Workload
       run: dotnet workload install maui
     - name: Build
-      run: dotnet build **/*FileBringer.Maui.csproj -c Release -f net8.0-android /p:AndroidSigningKeyStore=filebringer.keystore /p:AndroidSigningKeyAlias=githubActionKey /p:AndroidSigningKeyPass="${{ secrets.KEYSTORE_PASSWORD }}" --no-restore
+      run: dotnet build ./FileBringer.sln -c Release -f net8.0-android /p:AndroidSigningKeyStore=filebringer.keystore /p:AndroidSigningKeyAlias=githubActionKey /p:AndroidSigningKeyPass="${{ secrets.KEYSTORE_PASSWORD }}" --no-restore
     - name: Upload a build artifact
       uses: actions/upload-artifact@v4.3.1
       with: 
