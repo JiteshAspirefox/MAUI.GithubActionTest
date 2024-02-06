@@ -11,7 +11,7 @@ on:
 jobs:
   build-project:
     name: Build application
-    runs-on: ubuntu-latest # windows-latest can be used
+    runs-on: windows-latest 
     steps:
     - uses: actions/checkout@v3
     - name: Setup Keystore File
@@ -37,7 +37,7 @@ jobs:
 
   release-project:
     name: Create release
-    runs-on: ubuntu-latest # windows-latest can be used
+    runs-on: windows-latest 
     needs: build-project # name of the previous job that is needs to complete before
     steps:
       - name: Upload build Artifact(apk)
