@@ -32,7 +32,6 @@ jobs:
       uses: actions/upload-artifact@v4.3.1
       with: 
         path: |
-            ./**/*.aab
             ./**/*.apk
 
   release-project:
@@ -40,9 +39,6 @@ jobs:
     runs-on: windows-latest 
     needs: build-project # name of the previous job that is needs to complete before
     steps:
-      - name: Upload build Artifact(apk)
-        uses: actions/upload-artifact@v4
-
       - name: View Artifact Details
         run: ls -R
       
