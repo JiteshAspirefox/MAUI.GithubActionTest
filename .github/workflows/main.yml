@@ -2,6 +2,8 @@
 name: Dotnet MauiActions
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
     types: ["closed"]
@@ -41,6 +43,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: my-artifact
+          
       - name: View Artifact Details
         run: ls -R
       
