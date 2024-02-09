@@ -52,12 +52,12 @@ jobs:
           release_name: Release ${{ github.run_number }}
           prerelease: false
 
-      - name: Upload release asset
+      - name: Upload a release asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-          asset_path: ./*.apk
-          asset_name: mauiTest-v${{ github.run_number }}.apk
+          asset_path: bin/*.apk
+          asset_name: mauiTest-${{ github.run_number }}.apk
           asset_content_type: application/vnd.android.package-archive
