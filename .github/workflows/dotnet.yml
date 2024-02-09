@@ -16,8 +16,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Setup Keystore File
       run: |
-        echo "${{ secrets.KEYSTORE_FILE }}" > filebringer.keystore.asc
-        gpg -d --passphrase "${{ secrets.KEYSTORE_PASSWORD_GPG }}" --batch filebringer.keystore.asc > filebringer.keystore
+        echo "${{ secrets.KEYSTORE_FILE }}" > mauiTest.keystore.asc
+        gpg -d --passphrase "${{ secrets.KEYSTORE_PASSWORD_GPG }}" --batch mauiTest.keystore.asc > mauiTest.keystore
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -27,7 +27,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build ./FileBringer.sln -c Release -f net8.0-android /p:AndroidSigningKeyStore=filebringer.keystore /p:AndroidSigningKeyAlias=githubActionKey /p:AndroidSigningKeyPass="${{ secrets.KEYSTORE_PASSWORD }}" --no-restore
+      run: dotnet build ./FileBringer.sln -c Release -f net8.0-android /p:AndroidSigningKeyStore=mauiTest.keystore /p:AndroidSigningKeyAlias=githubActionKey /p:AndroidSigningKeyPass="${{ secrets.KEYSTORE_PASSWORD }}" --no-restore
     - name: Upload a build artifact
       uses: actions/upload-artifact@v4.3.1
       with: 
