@@ -2,8 +2,6 @@
 name: Dotnet MauiActions
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
     types: ["closed"]
@@ -33,17 +31,16 @@ jobs:
       with: 
         path: |
             ./**/*.apk
-    - name: View Artifact Details
-      run: ls -R
 
   release-project:
     name: Create release
     runs-on: windows-latest 
     needs: build-project # name of the previous job that is needs to complete before
     steps:
-      - name: Copy APK file
-        run: cp artifacts/*.apk ./
-        
+     
+      - uses: actions/download-artifact@v4
+        with:
+          name: my-artifact
       - name: View Artifact Details
         run: ls -R
       
